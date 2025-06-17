@@ -1,0 +1,243 @@
+/* Reset e configurações globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+/* Cabeçalho do jogo */
+.game-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.turn-display {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+}
+
+/* Controles do jogo */
+.controls {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: linear-gradient(45deg, #ff6b6b, #ee5a52);
+    color: white;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Container principal do jogo */
+.game-container {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.player-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.player-title {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 8px;
+    backdrop-filter: blur(5px);
+}
+
+/* Estilos dos tabuleiros */
+.board {
+    display: grid;
+    grid-template-columns: repeat(10, 40px);
+    grid-template-rows: repeat(10, 40px);
+    gap: 2px;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    border: 1px solid #4a5568;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    border-radius: 4px;
+}
+
+.cell:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 10px rgba(255,255,255,0.3);
+}
+
+/* Estados das células */
+.water {
+    background-color: #3182ce;
+}
+
+.ship {
+    background-color: #38a169;
+}
+
+.hit {
+    background-color: #e53e3e;
+    color: white;
+}
+
+.miss {
+    background-color: #718096;
+    color: white;
+}
+
+.hit::after {
+    content: '💥';
+    font-size: 20px;
+}
+
+.miss::after {
+    content: '💧';
+    font-size: 16px;
+}
+
+.attack-board .cell {
+    background-color: #2d3748;
+}
+
+.own-board .ship {
+    background-color: #38a169;
+}
+
+/* Mensagens do jogo */
+.game-message {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(45deg, #667eea, #764ba2);
+    color: white;
+    padding: 30px 50px;
+    border-radius: 15px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    display: none;
+}
+
+.game-message.show {
+    display: block;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+/* Legenda */
+.legend {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 12px;
+    border-radius: 6px;
+    backdrop-filter: blur(5px);
+}
+
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .game-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    
+    .board {
+        grid-template-columns: repeat(10, 35px);
+        grid-template-rows: repeat(10, 35px);
+    }
+    
+    .cell {
+        width: 35px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batalha Naval 1v1</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-header">
+        <h1>🚢 Batalha Naval 1v1 ⚓</h1>
+        <div class="turn-display" id="turnDisplay">Clique em "Iniciar Jogo" para começar!</div>
+        <div class="controls">
+            <button id="startBtn" onclick="startGame()">Iniciar Jogo</button>
+            <button id="resetBtn" onclick="resetGame()">Reiniciar</button>
+        </div>
+    </div>
+
+    <div class="game-container">
+        <div class="player-section">
+            <div class="player-title">🎯 Tabuleiro de Ataque</div>
+            <div class="board attack-board" id="attackBoard"></div>
+        </div>
+
+        <div class="player-section">
+            <div class="player-title">🛡️ Seus Navios</div>
+            <div class="board own-board" id="ownBoard"></div>
+        </div>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color water"></div>
+            <span>Água</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color ship"></div>
+            <span>Navio</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color hit"></div>
+            <span>Acerto</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color miss"></div>
+            <span>Erro</span>
+        </div>
+    </div>
+
+    <div class="game-message" id="gameMessage"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
